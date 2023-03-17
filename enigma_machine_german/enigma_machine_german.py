@@ -199,17 +199,21 @@ R={
 class EnigmaMachine:
     def __init__(self, w1n, w2n, w3n):
         """
+            Modeled on German Railway (Rocket) Enigma machine.(7 February 1941)
+            Rotor configuration: I, II, III, UKW, ETW(Reflector) from wikipedia.
+            R - UKW
+
             Initialize an Enigma machine with specified starting positions.
 
             Parameters
             ----------
-            w1n : int
+            w1n : int < 26
                 Starting position of the first wheel.
-            w2n : int
+            w2n : int < 26
                 Starting position of the second wheel.
-            w3n : int
+            w3n : int < 26
                 Starting position of the third wheel.
-            """
+        """
         self.wheel1 = W1[w1n:] + W1[:w1n]
         self.wheel2 = W2[w2n:] + W2[:w2n]
         self.wheel3 = W3[w3n:] + W3[:w3n]
@@ -217,7 +221,7 @@ class EnigmaMachine:
     def rotate_wheels(self):
         """
             Rotate the wheels of the Enigma machine.
-            """
+        """
         self.wheel1 = self.wheel1[1:] + self.wheel1[:1]
         if self.wheel2.index('R') == 0:
             self.wheel2 = self.wheel2[1:] + self.wheel2[:1]
